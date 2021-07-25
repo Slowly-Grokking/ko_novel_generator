@@ -1,3 +1,9 @@
+This is a quick and dirty translate of https://github.com/IllgamhoDuck/ko_novel_generator
+I run this with python3.8, but have not tested other versions or dug into any requirements. 
+
+I have only used the train, multi_train, vocab_generator, and generate.py as described in the howto below.
+
+
 # en_novel_generator
 ### Deep learning model writing korean novel
 ### Deep learning model to generate Korean novels
@@ -46,9 +52,9 @@ About 1,000 novels that exist on the Internet were crawled and used as learning 
 Learning proceeds normally and begins to replicate the novel as-is. If you study several novels, you expect to learn various styles, but you start to adapt to the style of the novel you are learning right now. We have not yet created a model that responds appropriately to input sentences, and we would like to find a way to do this by studying the gpt-2 model of Open ai.
 
 ## file configuration
-1. `data/` - folder to put novel data to be trained
+1. `data/` - folder to put novel data to be trained (your .txts)
 2. `generate/` - folder where the generated novel data is saved
-3. `save/` - Folder to save the learned model parameter values
+3. `save/` - Folder to save the learned model parameter values (.pths)
 4. `vocab/` - Folder to save the created novel dictionary data
 5. `data_loader` - After preprocessing data, it is created in batch units.
 6. `generate.py` - generate a novel based on the trained model
@@ -68,9 +74,10 @@ How to use is very simple. Except for the novel preprocessing process. The novel
 You must put a delimiter `` between every sentence and sentence in the novel. If you're having trouble with this, you're right. It's time to start that infamous regular expression.
 
 - The following sites are recommended. https://www.regexpal.com/
+- https://mikedombrowski.com/2017/04/regex-sentence-splitter/
 
-3. Put the novel text in the save folder
-- Put the desired novel in the `save` folder.
+3. Put the novel text in the data folder   (orignal source said to put in save folder, unless i'm missing something it should be in data)
+- Put the desired novel in the `data` folder. (orignal source said to put in save folder, unless i'm missing something it should be in data)
 4. Create a word dictionary
 `python vocab_generator.py`
 5. Start learning
