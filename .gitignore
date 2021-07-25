@@ -4,3 +4,4 @@ save/
 vocab/
 .ipynb_checkpoints
 __pycache__/
+/.vs

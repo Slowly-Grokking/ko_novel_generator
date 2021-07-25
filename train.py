@@ -55,7 +55,7 @@ def train(opt):
     
     for epoch in range(opt.num_epochs):
         # Init hidden variable
-        h = model.module.init_hidden()
+        h = model.init_hidden()
         h = Variable(h)
         if opt.cuda:
             h = h.cuda()
@@ -111,7 +111,7 @@ def train(opt):
         if opt.save_every and (epoch+1) % opt.save_every == 0 and opt.resume == None:
             save_path = os.path.join(opt.save_dir, "gru_{0}.pkl".format(epoch+1))
             print("Saving to {}".format(save_path))
-            torch.save(model.module.state_dict(), save_path)
+            torch.save(model.state_dict(), save_path)
         elif opt.save_every and (epoch+1) % opt.save_every == 0 and opt.resume != None:
             save_path = os.path.join(opt.save_dir, "gru_{0}.pkl".format(epoch+1+opt.resume_epoch))
             print("Saving to {}".format(save_path))
@@ -125,7 +125,7 @@ def valid(opt, model, dataloader, criterion, optimizer):
     opt.mode = 'valid'
 
     # Init hidden variable
-    valid_h = model.module.init_hidden()
+    valid_h = model.init_hidden()
     valid_h = Variable(valid_h)
     if opt.cuda:
         valid_h = valid_h.cuda()
@@ -182,11 +182,11 @@ if __name__ == "__main__":
     hidden_size = 1024
     embedding_size = 1024
     cuda = True if torch.cuda.is_available() else False
-    batch_size = 8
+    batch_size = 32
     seq_len = 200
     num_epochs = 3
     save_every = 1
-    print_every = 50
+    print_every = 1
     valid_every = 50 # test the valid data when batch step is (int)
     grad_clip = 5.
     learning_rate = 0.001
@@ -219,7 +219,7 @@ if __name__ == "__main__":
     opt.vocab_ctoi = vocab['vocab_ctoi']
     
     # Specify the novel path
-    opt.novel_path = "data/ov.txt"
+    opt.novel_path = "data/fear.txt"
     
     # Resume
     # opt.resume = True

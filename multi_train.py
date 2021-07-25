@@ -63,10 +63,10 @@ if __name__ == "__main__":
     cuda = True if torch.cuda.is_available() else False
     batch_size = 32
     seq_len = 50
-    num_epochs = 20
-    save_every = 20
-    print_every = 50
-    valid_every = 50 # test the valid data when batch step is (int)
+    num_epochs = 2
+    save_every = 1
+    print_every = 1
+    valid_every = 1 # test the valid data when batch step is (int)
     grad_clip = 5.
     learning_rate = 0.001
 
