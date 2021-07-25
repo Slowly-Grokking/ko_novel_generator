@@ -71,7 +71,7 @@ How to use is very simple. Except for the novel preprocessing process. The novel
 1. Create a folder
 `mkdir save generate save vocab`
 2. Novel Pretreatment
-You must put a delimiter `` between every sentence and sentence in the novel. If you're having trouble with this, you're right. It's time to start that infamous regular expression.
+You must put a delimiter `</s>` between every sentence and sentence in the novel. If you're having trouble with this, you're right. It's time to start that infamous regular expression.
 
 - The following sites are recommended. https://www.regexpal.com/
 - https://mikedombrowski.com/2017/04/regex-sentence-splitter/
