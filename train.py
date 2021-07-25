@@ -37,7 +37,7 @@ def train(opt):
         else:
             raise Exception("If your trying to transfer learn specify the epoch to [opt.resume_epoch]")
         # load saved model
-        model.module.load_state_dict(torch.load(save_path))
+        model.load_state_dict(torch.load(save_path))
                 
     # Setup Training
     criterion = nn.CrossEntropyLoss()
@@ -115,7 +115,7 @@ def train(opt):
         elif opt.save_every and (epoch+1) % opt.save_every == 0 and opt.resume != None:
             save_path = os.path.join(opt.save_dir, "gru_{0}.pkl".format(epoch+1+opt.resume_epoch))
             print("Saving to {}".format(save_path))
-            torch.save(model.module.state_dict(), save_path)
+            torch.save(model.state_dict(), save_path)
 
 
 # Checking the validate
