@@ -1,134 +1,155 @@
-ko_novel_generator
-Deep learning model writing korean novel
-Deep learning model to create Korean novels
-Lablup - A project that participated in a Just model it event.
+# en_novel_generator
+### Deep learning model writing korean novel
+### Deep learning model to generate Korean novels
 
-Black Oribana Team
+Lablup - [Just model it event](https://events.backend.ai/just-model-it/) This is a project that I participated in.
 
 
-It is a project aimed at learning ai based on websites and writing novels, and using them to write relay novels with ARTIFICIAL INTELLIGENCE. And we want to build a deep learning model that writes Korean novels, which is a key part of this project.
+### Black Oribanana Team
 
-1. Human participation - selection of learning data and creation of results
-People will participate in the process of selecting a novel to use as data, and then participate in the number of keywords and sentence lengths that AI will choose when writing a novel, using the final AI.
-When multiple people present different options, the final choice is decided by people's votes.
-This is a project that involves people picking their own data and participating in all the processes of creating results using learned ARTIFICIAL INTELLIGENCE to complete a novel together.
 
-2. Relay novel writing method - human-> ai turn method
-Like a relay novel, it is a way to write a part of a novel, then write a novel with a new keyword, and repeat it to gradually complete the novel.
-We also want to learn new novels as we write them, allowing AI to digest novels in different styles.
+Based on the website, it is a project that aims to learn artificial intelligence that people can participate in and write novels, and to use this to write relay novels with artificial intelligence. And we want to build a deep learning model for writing Korean novels, which is a key part of this project.
 
-We don't aim to create the best performing model.
-We aim to be able to experience and enjoy ARTIFICIAL INTELLIGENCE by humans who do not know artificial intelligence.
+#### 1. Human participation - selection of learning data and creation of results
 
-What an occasion you made
-The term artificial intelligence has long been familiar to humans, but it's limited where it can be used directly. Artificial intelligence technology is a melting force in everyday life, but it's hard to recognize it. https://experiments.withgoogle.com/ like The New Year, but you can only use learned AI. Of course, it's easy to learn AI directly on your own taste buds.
+> People participate in the process of selecting novels to use as data, and finally utilize the artificial intelligence created to select keywords and sentence lengths to be selected when the artificial intelligence writes a novel.   
+> Multiple people present various options, and the final choice is decided by people's votes.  
+> Through this, it is a project in which people complete a novel together by participating in all processes, from the process of selecting data to the process of using the learned artificial intelligence to produce results.
 
-With the advent of various deep learning frameworks, artificial intelligence technology is in an era where it is easier than ever for humans to use. But it's also hard to use it yourself, as long as you're not a developer. Even the public who had no idea of development thought that artificial intelligence should be created because they didn't see a place to learn and use it.
+#### 2. Relay novel writing method - Human -> AI turn method
 
-Instead of enjoying and ending up enjoying it for a while, I wanted to be able to continue participating and create and experience ARTIFICIAL INTELLIGENCE, and I was planning a participating novel AI writing project, which I see as appropriate in that among various topics, novel writing AI can continue to engage people.
+> Like a relay novel, you write a part of the novel and then write the novel with new keywords, repeating it, and gradually completing the novel.  
+> In addition, we want to learn new novels in the middle of writing novels so that AI can digest various styles of novels.  
 
-How you made it
-1. Currently applied model
-The model currently in GRU(Gated Recurrent Neural network) model. It's a very simple principle by typing a letter by letter and predicting the next, and we want to build a better model in the future to improve performance with a temporary model.
+We do not aim to create the best performing model.  
+It aims to enable humans who do not know artificial intelligence to experience and enjoy artificial intelligence.  
 
-lstm
+## How did you make it?
+Although the term artificial intelligence has long been familiar to humans, the places where artificial intelligence can be directly applied are limited. Artificial intelligence technology is embedded in our daily life, but it is difficult to recognize it. There are representative AI-enabled websites, such as https://experiments.withgoogle.com/, but they can only use learned AI. Of course, it is easy to learn artificial intelligence to your own taste.
 
-We want to use a variety of pre-built NN models to understand structure, test performance, and create our own custom models.
+With the advent of various deep learning frameworks, artificial intelligence technology is now in an era where it is easier than ever for humans to use it. However, unless you are a developer, it is also difficult to use it directly. Since there was no place where even ordinary people who had no knowledge of development could directly learn and utilize artificial intelligence, I thought of making it.
 
-2. Data
-We crawled over 1,000 novels on the Internet and used them as learning data.
+I wanted to make it possible to create and experience artificial intelligence directly by participating continuously, rather than enjoying it for a while. Among various topics, I thought that artificial intelligence for novel writing was appropriate in that it allowed people to continuously participate in the AI ​​writing project of a participatory novel. has been planned.
 
-3. Results
-The learning progresses normally and begins to replicate the novel as it is. As I learned different novels, I expected to learn a variety of stylistics, but I started to adapt to the stylistics of the novels I was learning right now. We haven't created a model that responds appropriately to the sentences we type, and we want to find a way to do that while studying the gpt-2 model of Open ai.
+## How to make it
+#### 1. Currently applied model
+The model currently in use is the 'Gated Recurrent Neural Network' (GRU) model. It is a very simple principle by receiving Hangul input one character at a time and predicting the next Hangul. This is a model that is used temporarily, and we plan to build a better model in the future to increase the performance.
 
-File configuration
-data/ - A folder that contains the novel data to be trained
-generate/ - The folder where the generated fiction data is stored
-save/ - Folder that stores trained model parameter values
-vocab/ - Folder that stores generated novel dictionary data
-data_loader - Preprocesses data and generates it in batch units
-generate.py Create a novel based on a trained model
-model.py - Pytorch GRU Model Code
-multi_train.py - used when you want to learn multiple novels in a row. train.pyon the data.
-opt.py - An option that saves important variables related to overall deep learning learning
-train.py - Learning Fiction
-vocab_generator.py Pre-generated based on the novel
-How to use it
-How to use it is very simple. Except for the pretreatment of the novel. The preprocessing code for the novel has not yet been uploaded, so you have to do it yourself.
+![lstm](https://github.com/IllgamhoDuck/DLND/blob/master/intro-to-rnns/assets/charRNN%400.5x.png)
 
-Create mkdir save generate save vocab
-Preprocessing a novel A delimiter must be inserted </s>between every sentence and sentence. If you've felt hassled by this point, you're right. It's time to start that infamous regular expression.
-We recommend the following sites: https://www.regexpal.com/
-Put novel text in save folder
-save you want in the save folder.
-Word python vocab_generator.py
-Start python multi_train.py
-python generate.py --epoch [int] --prime [str] --len [int] --resume [bool]
-epoch - Decides how many of the trained models to use.
-prime - Set the input phrase. When you type a phrase, it generates the appropriate phrases.
-len the sentence you want to create.
-resume resume - True, it is subsequently generated by a phrase that you previously created.
-More details on the process of creating a novel
-Input - python generate --epoch 20 --prime ""안녕 난 오리라고 해."" --len 10
-"난 거위라 해!"
-input - python generate --epoch 20 --prime ""거위?"" --len 10 --resume True
-Output - ""맞아 난 거위야""
-The resume does not need to be cared for separately because default is False for the first input. If you want to continue with the phrase before you create the second --resume True Here, a total of four sentences were followed.
+We use various pre-made RNN models to understand the structure and test the performance, and then we want to create our own custom model.
 
-"Hi I'm a duck."
-"I'm a goose!"
-"Goose?"
-"That's right, I'm a goose"
-The generated output generateis result.txtin the generate folder.
+#### 2. Data
+About 1,000 novels that exist on the Internet were crawled and used as learning data.
 
-API(Flask)
-ko_novel_generator API server (python Flask) for use on the web
+#### 3. Results
+Learning proceeds normally and begins to replicate the novel as-is. If you study several novels, you expect to learn various styles, but you start to adapt to the style of the novel you are learning right now. We have not yet created a model that responds appropriately to input sentences, and we would like to find a way to do this by studying the gpt-2 model of Open ai.
 
-API LIST
-put_Human_txt (get, post)
-Enter the user's text to further learn, followed by generate text
-paramters
-contents_id The id of the contents that the user entered on the web
-is_first : Original creation, new learning if True, followed by False
-result
-Save generated text to DB, no return value
-How to use the API
-depengency
-flask / flask_restful / flask_script / flask_migrate
-sqlalchemy
-marshmallow
-pytorch
-execute
-config.py
-SQLALCHEMY_DATABASE_URIDB information in the database
-run.py
-EnterYOUR_LOCAL_HOSTin host (1000000000000000000000000000000000000
-Other models I've tested
-l2w(Learning to Write) - https://github.com/ari-holtzman/l2w
-word 단위로 학습the GRU method to train in GRU units. Adaptive softmaxapply An Applitive Beam searchsoftmax and use decoder to create results by scoring through four discriminatorsto create results, creating sentences that are not repetitive, contextual, and conform to existing novel styles.
+## file configuration
+1. `data/` - folder to put novel data to be trained
+2. `generate/` - folder where the generated novel data is saved
+3. `save/` - Folder to save the learned model parameter values
+4. `vocab/` - Folder to save the created novel dictionary data
+5. `data_loader` - After preprocessing data, it is created in batch units.
+6. `generate.py` - generate a novel based on the trained model
+7. `model.py` - Pytorch GRU model code
+8. `multi_train.py` - Used to train multiple novels in succession. Based on `train.py`.
+9. `opt.py` - Abbreviation for Option, which stores important variables related to overall deep learning learning
+10. `train.py` - novel learning
+11. `vocab_generator.py` - create a dictionary based on a novel
+  
 
-4 discriminators
+## How to use
+How to use is very simple. Except for the novel preprocessing process. The novel preprocessing code has not been uploaded yet, so you have to do it yourself.
 
-Repetition
-Entailment
-Relevance
-Lexical Style
-You need to learn the Entertainment discriminator using SNLI and MultiNLI, which is English data, and we have not found any Korean data for similar purposes, so we have abandoned the use of the model. Entailment discriminator We tested the rest except for discriminator application in Beam search.
+1. Create a folder
+`mkdir save generate save vocab`
+2. Novel Pretreatment
+You must put a delimiter `` between every sentence and sentence in the novel. If you're having trouble with this, you're right. It's time to start that infamous regular expression.
 
-Seq2seq attention - https://github.com/IBM/pytorch-seq2seq
-A model with attention applied to seq2seqwhich attentionby using sentences. It is suitable for translation, because memory is passed on a sentence-to-sentence basis, even though NN is used.
+- The following sites are recommended. https://www.regexpal.com/
 
-The seq2seq model does not convey the hidden state while continuing to learn, so it is not suitable for continuous writing, such as fiction. To make it suitable for fiction, the hidden state must be modified to pass between seq2seq models. seq2seq attention wrote a proper novel for pre-ed sentences, but the first sentences contained phrases that did not know their meaning.
+3. Put the novel text in the save folder
+- Put the desired novel in the `save` folder.
+4. Create a word dictionary
+`python vocab_generator.py`
+5. Start learning
+`python multi_train.py`
+6. Fiction Generation
+`python generate.py --epoch [int] --prime [str] --len [int] --resume [bool]`
+- `epoch` - Determines which epoch model to use among the trained models.
+- `prime` - Set the input text. If you enter a phrase, the appropriate phrase will be generated in succession.
+- `len` - Specifies the length of the sentence to be generated.
+- `resume` - If set to True, it will be generated after the previously generated phrase.
 
-Transformer - https://github.com/JayParks/transformer
-transformer
+#### A more detailed description of the novel creation process
+1. Input - `python generate --epoch 20 --prime ""Hello I'm a duck"" --len 10`
+2. Output - `"I'm a goose!"`
+3. Input - `python generate --epoch 20 --prime ""goose?"" --len 10 --resume True`
+4. Output - `""Yes I'm a goose""`
 
-This is a transformer that has helped Google create transformertranslator. RNNthe CNNand CNN approaches, and we've acquired the best of both worlds to create a model. Self-attentionthan traditional attentioncalled Self-attention. Seq2Seqit is suitable for making decisions on the fly, such as translators and review analysis, rather than long-term support, such as fiction, because there is no long-term support.
+For resume, you do not need to worry about it because the default is False for the first input. If you want to continue with the previous phrase when creating the second phrase, set `--resume True`. Here, a total of four sentences were written in succession.
 
-As a result, learning progresses, but it produces nonsensical results in the step of generating the result. We need to add long-term support, which is expected to work normally.
+- "Hello, I'm a duck."
+- "I'm a goose!"
+- "goose?"
+- "Yeah, I'm a goose"
 
-What parts do you want to do?
-Open AI GPT-2 - https://github.com/openai/gpt-2
-It is the GPT-2 model which has become a hot point with the recent release of OpenAI. The writing performance is so good that we're concerned that it will be mis-utilized like fake news, so we're only releasing a privately determined and simple model.
+The generated output text file is stored in the `result.txt` in the `generate` folder.
 
-By studying this model, we want to create an ARTIFICIAL INTELLIGENCE model where relay fiction is as natural as humans send and receive.
+
+
+## API (Flask)
+API server for using ko_novel_generator in web (python Flask)
+
+#### API LIST
+- `put_Human_txt (get, post)`  
+After further learning by inputting the user's text, the text is then generated.  
+  ###### parameters
+  1. `contents_id` : ID of the contents entered by the user on the web
+  2. `is_first` : Whether to write first, if True, learn new, if False, learn continuously    
+  ###### result
+  Save the created text in DB, no return value
+  
+#### How to use the API
+######
+  - `flask` ​​/ `flask_restful` / `flask_script` / `flask_migrate`
+  - `sqlalchemy`
+  - `marshmallow`
+  - `pytorch`  
+###### execute
+1. `config.py`  
+  Enter DB information in `SQLALCHEMY_DATABASE_URI`
+2. `run.py`  
+  Execute after entering host information in host(`YOUR_LOCAL_HOST`)
+  
+  
+
+## Other models tested
+#### l2w(Learning to Write) - https://github.com/ari-holtzman/l2w
+> It is a `GRU` model that learns `word unit`. When ‘Adaptive softmax’ is applied and a decoder is used to generate a result, a score is scored through **4 discriminators** in ‘Beam search’ to create a sentence that is not repetitive and that matches the context and existing novel style. It is an outgoing model.
+
+**4 discriminators**
+- `Repetition`
+- `Entailment`
+- `Relevance`
+- `Lexical Style`
+
+ **Entailment using [SNLI](https://nlp.stanford.edu/projects/snli/) and [MultiNLI](https://www.nyu.edu/projects/bowman/multinli/)** Discriminator` should be learned, but since it is English data, we gave up using the model because we could not find Korean data for a similar purpose. Except for applying the discriminator in Beam search, I tested the rest.
+
+#### Seq2seq attention - https://github.com/IBM/pytorch-seq2seq
+> This is a model in which `attention` is applied to `seq2seq`, which receives a sentence and predicts and outputs the sentence. Although it uses RNNs, it is suitable for tasks such as translation because memories are passed on a sentence-by-sentence basis.
+
+The seq2seq model is not suitable for continuous writing tasks such as novels because it does not transmit hidden state (memory) while continuing to learn. To make it into a form suitable for novels, we need to modify the hidden state to pass between the seq2seq models. seq2seq attention wrote an appropriate novel for pre-learned sentences, but only presented phrases with unknown meaning in sentences they saw for the first time.
+
+#### Transformer - https://github.com/JayParks/transformer
+![transformer](https://cdn-images-1.medium.com/max/1200/0*plM2xPXX4TppwUeQ.)
+> This is 'transformer', which has helped Google a lot in making a high-performing translator. It is not the 'RNN' method and the 'CNN' method, and the model was created by acquiring the excellent advantages of both. This algorithm is different from the existing `attention` called `Self-attention`. Like 'Seq2Seq', long-term memory does not exist, so it is suitable for tasks that require instantaneous judgment, such as translators and review analysis, rather than tasks that require long-term memory such as novels.
+
+As a result of application, learning proceeds, but gives meaningless results in the stage of generating results. It is expected that long-term memory will be added to function normally.
+
+## What part do you want to do more?
+#### Open AI GPT-2 - https://github.com/openai/gpt-2
+It is the GPT-2 model, which has become a hot topic recently as OpenAI was released. Because of its excellent writing performance, it was decided to be kept private and only a simple model was released for fear of being misused like fake news.
+
+By studying this model, we want to create an artificial intelligence model that is as natural as writing a relay novel as humans give and receive.
