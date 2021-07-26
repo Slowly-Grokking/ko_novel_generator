@@ -19,7 +19,7 @@ def softmax(output):
     return output
 
 def highest_epoch(opt):
-    epoch_list = os.listdir(opt.save_dir)
+    epoch_list = os.listdir(save_dir)
     epoch_list = [int(epoch[4:-4]) for epoch in epoch_list]
     highest_epoch = sorted(epoch_list)[-1]
     return highest_epoch
@@ -97,21 +97,20 @@ if __name__ == "__main__":
     # get the information from argparse
     parser = argparse.ArgumentParser("Add information about making samples")
    
-    parser.add_argument('--run', type=bool, default=False,
+    parser.add_argument('--run', type=bool, default=True,
                         help="if you run main method")
     parser.add_argument('--epoch', type=int, default=None,
                         help="The epoch of saved model your gonna load")
-    parser.add_argument('--prime', type=str, default=" ",
+    parser.add_argument('--prime', type=str, default="I really didn't know what to say.",
                         help="Enter the text that you wanna start with")
     parser.add_argument('--len', type=int, default=1000,
                         help="how long will you generate text?")
     parser.add_argument('--resume', default=False,
                         help="resume previous hidden state?")
     
-    args = parser.parse_args()                         
+    args = parser.parse_args()     
     
     if args.run:
-        assert args.epoch != None, "The epoch must be entered! --epoch [int]"
         
         # Directory
         # - Where is trainable data
@@ -120,7 +119,11 @@ if __name__ == "__main__":
         data_dir = "data/"
         save_dir = "save/"
         gen_dir = "generate/"
-    
+        
+        if args.epoch == None:
+            args.epoch = highest_epoch(opt)
+            print("Using highest_epoch")
+
         # Choose the hyperparameter at here!
         ratio = 0.9
         num_layers = 2
